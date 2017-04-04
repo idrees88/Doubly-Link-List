@@ -27,6 +27,7 @@ void StudentLinkList::addStudent(StudentData *studentData) {
     }
     
     traversePointer->setNext(studentData);
+    studentData->setBack(traversePointer);
     this->size++;
 }
 
