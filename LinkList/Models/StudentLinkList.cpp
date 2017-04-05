@@ -67,7 +67,6 @@ void StudentLinkList::removeStudent(StudentData *studentData) {
     }
     int count = 0;
     StudentData *traversePointer = this->head;
-    StudentData *backTraversePointer = this->head;
     do {
         if (!traversePointer->getStudentName().compare(studentData->getStudentName())
             && !traversePointer->getStrudentTollNo().compare(studentData->getStrudentTollNo())) {
@@ -77,13 +76,13 @@ void StudentLinkList::removeStudent(StudentData *studentData) {
                 this->size--;
                 return;
             }
-            backTraversePointer->setNext(traversePointer->getNext());
+            traversePointer->getBack()->setNext(traversePointer->getNext());
+            traversePointer->getNext()->setBack(traversePointer->getBack());
             delete traversePointer;
             this->size--;
             return;
         }
         
-        backTraversePointer = traversePointer;
         traversePointer = traversePointer->getNext();
         count++;
         
