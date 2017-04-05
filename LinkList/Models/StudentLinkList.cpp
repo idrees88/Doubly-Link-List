@@ -38,23 +38,23 @@ void StudentLinkList::addStudent(StudentData *studentData, int position) {
     }
     
     StudentData *traversePointer = this->head;
-    StudentData *backToTraversePointer = this->head;
     int currentPosition = 0;
     
     while (traversePointer != nullptr) {
         if (currentPosition == position) {
-            studentData->setNext(traversePointer);
             if (position == 0) {
                 this->head = studentData;
             }
             else {
-                backToTraversePointer->setNext(studentData);
+                studentData->setBack(traversePointer->getBack());
+                traversePointer->getBack()->setNext(studentData);
+                studentData->setNext(traversePointer);
+                traversePointer->setBack(studentData);
             }
             
             this->size++;
             return;
         }
-        backToTraversePointer = traversePointer;
         traversePointer = traversePointer->getNext();
         currentPosition++;
     }
