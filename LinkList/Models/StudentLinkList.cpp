@@ -98,7 +98,6 @@ void StudentLinkList::removeStudentAtPosition(int position) {
     
     int count = 0;
     StudentData *traversePointer = this->head;
-    StudentData *backToTraversePointer = this->head;
     
     do {
         if (count == position && count == 0) {
@@ -108,13 +107,13 @@ void StudentLinkList::removeStudentAtPosition(int position) {
             return;
         }
         else if(count == position) {
-            backToTraversePointer->setNext(traversePointer->getNext());
+            traversePointer->getBack()->setNext(traversePointer->getNext());
+            traversePointer->getNext()->setBack(traversePointer->getBack());
             delete traversePointer;
             this->size--;
             return;
         }
         
-        backToTraversePointer = traversePointer;
         traversePointer = traversePointer->getNext();
         count++;
         
